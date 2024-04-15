@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image} from 'react-native';
 import {createUserWithEmailAndPassword } from "firebase/auth";
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
 
 const PlaceholderImage = require('../component/image/usuario.png');
 
-const Registrar = () => {
+const Registrar = ({navigation}) => {
   const [nomeUsuario, setNomeUsuario] = useState('');
   const [senha, setSenha] = useState('');
   const [senha2, setSenha2] = useState('');
 
   const onLoginClick = () => {
-    
+    navigation.navigate('Home')
   }
 
   return (

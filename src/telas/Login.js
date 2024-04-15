@@ -1,25 +1,28 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image} from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
 
 
 const PlaceholderImage = require('../component/image/usuario.png');
 
-const Login = () => {
+const Login = ({navigation}) => {
   const [nomeUsuario, setNomeUsuario] = useState('');
   const [senha, setSenha] = useState('');
 
   const onLoginClick = () => {
- 
+
   }
 
-
-  
+  const onPressRegister = () => {
+    navigation.navigate('Registrar')
+  }
 
   return (
     <View style={styles.container}>
-            <Image source={PlaceholderImage} style={styles.image} />
-            <Text style={styles.titulo}>Login</Text>
+      <Image source={PlaceholderImage} style={styles.image} />
+      <Text style={styles.titulo}>Login</Text>
       <TextInput
         style={styles.input}
         placeholder="Nome de Usuário"
@@ -33,12 +36,20 @@ const Login = () => {
         value={senha}
         secureTextEntry={true}
       />
+      <View >
+        <Text >
+          Não tem uma conta?
+          <Text onPress={onPressRegister} style={styles.linkRegister}> Cadastre-se!</Text>
+        </Text>
+      </View>
+
+
       <TouchableOpacity style={styles.botao} onPress={onLoginClick}>
         <Text style={styles.textoBotao}>Entrar</Text>
       </TouchableOpacity>
     </View>
 
-    
+
   );
 };
 
@@ -48,13 +59,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#ffffff',
-    gap:10,
+    gap: 10,
   },
   image: {
-    width:'80%',
-    height:100,
-    resizeMode:"contain",
-  
+    width: '80%',
+    height: 100,
+    resizeMode: "contain",
+
   },
   titulo: {
     fontSize: 40,
@@ -84,6 +95,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
+  linkRegister:{
+    color: 'orange',
+    textDecorationLine: 'underline',
+  }
 });
 
 export default Login;
